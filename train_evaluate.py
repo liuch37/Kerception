@@ -9,6 +9,7 @@ import datasets
 from models import models_factory
 from layers import *
 import click
+import pickle
 
 #args
 @click.command()
@@ -34,6 +35,12 @@ def main(datasetname,n_classes,batch_size,
          model_name, kernel, cp, dp, gamma,pooling_method,
          epochs,lr,keep_prob,weight_decay,
          base_log_dir):
+
+    #Save all statistics for both training/validation
+    STAT_FILE = './statistics.txt'
+
+    if os.path.exists(STAT_FILE):
+        os.remove(STAT_FILE)
 
     #Fix TF random seed
     tf.random.set_seed(1777)
@@ -126,6 +133,16 @@ def main(datasetname,n_classes,batch_size,
                                                                     save_path))
                 # Log every 200 batch
                 if step % 200 == 0:
+                    for x_batch, y_batch in test_dataset:
+                        if len(x_batch.shape)==3:
+                            x_batch = tf.expand_dims(x_batch, 3)
+                            test_logits = model(x_batch, training=False)
+                            # Update test metrics
+                            test_acc_metric(y_batch, test_logits)
+
+                    test_acc = test_acc_metric.result()
+                    test_accuracy_collector.append(float(test_acc))
+
                     train_acc = train_acc_metric.result() 
                     print("Training loss {:1.2f}, accuracu {} at step {}".format(\
                             loss.numpy(),
@@ -151,12 +168,14 @@ def main(datasetname,n_classes,batch_size,
                 test_acc_metric(y_batch, test_logits)
 
             test_acc = test_acc_metric.result()
-            test_accuracy_collector.append(float(test_acc))
             tf.summary.scalar("accuracy", test_acc, step=ep)
             test_acc_metric.reset_states()
             print('[Epoch {}] Test acc: {}'.format(ep, float(test_acc)))
     
     print("Best test accuracy is: {}".format(max(test_accuracy_collector)))
+    #Save stats:
+    with open(STAT_FILE, 'wb') as fp:
+        pickle.dump(test_accuracy_collector, fp)
 
 if __name__=="__main__":
     main()
