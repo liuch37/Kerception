@@ -131,8 +131,8 @@ def main(datasetname,n_classes,batch_size,
                     save_path = manager.save()
                     print("Saved checkpoint for step {}: {}".format(int(ckpt.step),
                                                                     save_path))
-                # Log every 200 batch
-                if step % 200 == 0:
+                # Log every 50 batch
+                if step % 50 == 0:
                     for x_batch, y_batch in test_dataset:
                         if len(x_batch.shape)==3:
                             x_batch = tf.expand_dims(x_batch, 3)

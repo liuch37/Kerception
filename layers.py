@@ -70,6 +70,41 @@ class PolynomialKernel(tf.keras.layers.Layer):
             return out +b
         return out
 
+class PolynomialKernel_plus(tf.keras.layers.Layer):
+    def __init__(self,cp=1.0, dp=3.0, trainable=False):
+
+        super(PolynomialKernel_plus, self).__init__(name="polynomialplusConv2D")
+        self.dp = dp
+        self.cp = cp
+        self.trainable = trainable
+        self.linear = LinearKernel()
+
+    def build(self, input_shape):
+        if self.trainable:
+            self.cp = self.add_weight(\
+                name='cp',
+                shape=(),
+                initializer=tf.keras.initializers.Constant(0.3),
+                trainable=True,
+                constraint=tf.keras.constraints.non_neg())
+            self.dp = self.add_weight(\
+                name='dp',
+                shape=(),
+                initializer=tf.keras.initializers.Constant(2.0),
+                trainable=True,
+                constraint=tf.keras.constraints.non_neg())
+
+        super(PolynomialKernel_plus, self).build(input_shape)
+
+    def call(self, inputs):
+        x, w, b = inputs
+        conv = self.linear((x,w,None))
+        s = conv + self.cp
+        out =  s**self.dp
+        if b is not None:
+            return out +b
+        return out
+
 class SigmoidKernel(tf.keras.layers.Layer):
     def __init__(self):
         super(SigmoidKernel, self).__init__(name="sigmoidConv2D")
