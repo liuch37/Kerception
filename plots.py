@@ -18,14 +18,24 @@ filename3 = './performance/MNIST_kervolution_gaussian_statistics.txt'
 with open(filename3, 'rb') as fp:
     test_acc3 = pickle.load(fp)
 
+filename4 = './performance/MNIST_kerceptionA_statistics.txt'
+with open(filename4, 'rb') as fp:
+    test_acc4 = pickle.load(fp)
+
+filename5 = './performance/MNIST_kerv_conv_poly_trainable_statistics.txt'
+with open(filename5, 'rb') as fp:
+    test_acc5 = pickle.load(fp)
+
 plt.figure(1)
 plt.plot(np.arange(len(test_acc0)),test_acc0,'-',\
          np.arange(len(test_acc1)),test_acc1,'--',\
-         np.arange(len(test_acc2)),test_acc2,'-.',\
-         np.arange(len(test_acc3)),test_acc3,'.',\
+         np.arange(len(test_acc2)),test_acc2,'--',\
+         np.arange(len(test_acc3)),test_acc3,'--',\
+         np.arange(len(test_acc4)),test_acc4,'-.',\
+         np.arange(len(test_acc5)),test_acc5,':',\
          linewidth=2, markersize=8)
 plt.ylabel('Validation Accuracy')
 plt.xlabel('Training Step')
 plt.grid()
-plt.legend(['convolution','kervolution - polynomial','kervolution - sigmoid','kervolution - gaussian'])
+plt.legend(['convolution','kervolution - polynomial','kervolution - sigmoid','kervolution - gaussian','kerception A','kerv - conv - polynomial'])
 plt.show()

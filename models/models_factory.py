@@ -16,7 +16,10 @@ def get_model(model_name, num_classes=10, keep_prob=1.0, **kwargs):
         return resnet.ResNet18(num_classes=num_classes)
     elif model_name.lower()=="resnet18knn":
         return resnet_KNN.ResNet18(num_classes=num_classes, kernel_fn=kwargs["kernel_fn"])
-
+    elif model_name.lower()=='lenetkcnn':
+        return leNet_KNN.LeNet5KCNN(num_classes=num_classes,
+                        keep_prob=keep_prob,
+                        **kwargs)
     else:
         raise ValueError("Unknown model name {}".format(model_name)) 
 
