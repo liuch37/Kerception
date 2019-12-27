@@ -37,7 +37,7 @@ class LeNet5KCNN(leNet.LeNet5):
 
         self.conv1 = Kerception_blockA()
 
-        #self.conv2 = Kerception_blockB()
+        #self.conv1 = Kerception_blockB()
 
         if pooling == 'avg':
             self.pool1 = tf.keras.layers.AveragePooling2D(pool_size=2,

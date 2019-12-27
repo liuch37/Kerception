@@ -34,6 +34,11 @@ filename7 = './performance/MNIST_kervolution_poly_hyper_statistics.txt'
 with open(filename7, 'rb') as fp:
     test_acc7 = pickle.load(fp)
 
+filename8 = './performance/MNIST_kerceptionB_statistics.txt'
+with open(filename8, 'rb') as fp:
+    test_acc8 = pickle.load(fp)
+
+
 plt.figure(1)
 plt.plot(np.arange(len(test_acc0)),test_acc0,'-',\
          np.arange(len(test_acc1)),test_acc1,'--',\
@@ -43,10 +48,11 @@ plt.plot(np.arange(len(test_acc0)),test_acc0,'-',\
          np.arange(len(test_acc5)),test_acc5,':',\
          np.arange(len(test_acc6)),test_acc6,'--',\
          np.arange(len(test_acc7)),test_acc7,'--',\
+         np.arange(len(test_acc8)),test_acc8,'-.',\
          linewidth=2, markersize=8)
 plt.ylabel('Validation Accuracy')
 plt.xlabel('Training Step')
 plt.grid()
-plt.legend(['conv-conv','kerv-kerv: polynomial (dp=3, cp=1)','kerv-kerv: sigmoid','kerv-kerv: gaussian (g=1)','kerception A-conv (cp trainable)','kerv-conv: polynomial (dp=3, cp trainable)', 'kerv-kerv: polynomial (dp=3, cp trainable)','kerv-kerv: polynomial (dp=2, cp=1)'])
+plt.legend(['conv-conv','kerv-kerv: polynomial (dp=3, cp=1)','kerv-kerv: sigmoid','kerv-kerv: gaussian (g=1)','kerception A-conv (cp trainable)','kerv-conv: polynomial (dp=3, cp trainable)', 'kerv-kerv: polynomial (dp=3, cp trainable)','kerv-kerv: polynomial (dp=2, cp=1)','kerception B-conv (dp, cp trainable)'])
 plt.title('MNIST')
 plt.show()
