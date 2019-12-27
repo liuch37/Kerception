@@ -10,6 +10,8 @@ from models import models_factory
 from layers import *
 import click
 import pickle
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
 
 #args
 @click.command()
@@ -35,6 +37,11 @@ def main(datasetname,n_classes,batch_size,
          model_name, kernel, cp, dp, gamma,pooling_method,
          epochs,lr,keep_prob,weight_decay,
          base_log_dir):
+
+    #Command for GPU version.
+    config = ConfigProto()
+    config.gpu_options.allow_growth = True
+    session = InteractiveSession(config=config)
 
     #Save all statistics for both training/validation
     STAT_FILE = './statistics.txt'
