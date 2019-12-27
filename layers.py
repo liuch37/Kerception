@@ -71,7 +71,7 @@ class PolynomialKernel(tf.keras.layers.Layer):
         return out
 
 class PolynomialKernel_plus(tf.keras.layers.Layer):
-    def __init__(self,cp=1.0, dp=3.0, trainable=False):
+    def __init__(self,cp=1.0, dp=3.0, trainable=True):
 
         super(PolynomialKernel_plus, self).__init__(name="polynomialplusConv2D")
         self.dp = dp
@@ -187,6 +187,8 @@ def get_kernel(kernel_name, **kwargs):
         return LPNormKernel(p=1)
     elif kernel_name == 'L2':
         return LPNormKernel(p=2)
+    elif kernel_name == 'polynomial_plus':
+        return PolynomialKernel_plus(cp=kwargs['cp'], dp=kwargs['dp'])
     else:
         return LinearKernel()
 
@@ -223,7 +225,7 @@ class Kerception_blockA(tf.keras.layers.Layer):
 
 class Kerception_blockB(tf.keras.layers.Layer):
     '''
-    Customized kervolution 2D + naive inception block with total 20 filters.
+    Customized kervolution 2D + naive inception block with total 10 filters and fully trainable parameters.
     '''
     def __init__(self):
 
@@ -233,15 +235,15 @@ class Kerception_blockB(tf.keras.layers.Layer):
         #self.kernel_fn3 = get_kernel("L2")
         #self.kconv3 = KernelConv2D(1, kernel_size=(3,3), kernel_fn=self.kernel_fn3)
         self.kernel_fn1 = get_kernel("linear")
-        self.kconv1 = KernelConv2D(2, kernel_size=(3,3), kernel_fn=self.kernel_fn1)
+        self.kconv1 = KernelConv2D(1, kernel_size=(3,3), kernel_fn=self.kernel_fn1)
         self.kernel_fn2 = get_kernel("sigmoid")
-        self.kconv2 = KernelConv2D(2, kernel_size=(3,3), kernel_fn=self.kernel_fn2)
+        self.kconv2 = KernelConv2D(1, kernel_size=(3,3), kernel_fn=self.kernel_fn2)
         self.kernel_fn3 = get_kernel("gaussian", gamma=1.0, trainable=True)
-        self.kconv3 = KernelConv2D(4, kernel_size=(3,3), kernel_fn=self.kernel_fn3)
-        self.kernel_fn4 = get_kernel("polynomial", cp=1.0, dp=3.0, trainable=True)
-        self.kconv4 = KernelConv2D(6, kernel_size=(3,3), kernel_fn=self.kernel_fn4)
-        self.kernel_fn5 = get_kernel("polynomial", cp=1.0, dp=5.0, trainable=True)
-        self.kconv5 = KernelConv2D(6, kernel_size=(3,3), kernel_fn=self.kernel_fn5)
+        self.kconv3 = KernelConv2D(2, kernel_size=(3,3), kernel_fn=self.kernel_fn3)
+        self.kernel_fn4 = get_kernel("polynomial_plus", cp=1.0, dp=3.0, trainable=True)
+        self.kconv4 = KernelConv2D(3, kernel_size=(3,3), kernel_fn=self.kernel_fn4)
+        self.kernel_fn5 = get_kernel("polynomial_plus", cp=1.0, dp=5.0, trainable=True)
+        self.kconv5 = KernelConv2D(3, kernel_size=(3,3), kernel_fn=self.kernel_fn5)
 
     def call(self, x):
         x1 = self.kconv1(x)
