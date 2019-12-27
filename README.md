@@ -1,5 +1,5 @@
 # Kerception Neural Networks
-This is the prototype for the proposed Kerception neural network and its dynamic scheduling algorithms, tested with different DNN models/datasets using Tensorflow 2.0.
+This is the prototype for the proposed Kerception neural network and its dynamic scheduling algorithms, tested with different DNN models/datasets using Tensorflow 2.0. Our implementation is on top of https://github.com/amalF/Kervolution.
 
 ## Introduction
 Our idea is based on the CVPR 2019 paper "Kervolutional Neural Networks" https://arxiv.org/pdf/1904.03955.pdf. The authors proposed a general operation for 2D convolution - kervolution. It is done by replacing linear weights in convolution with kernel tricks. Kernel representation can represent higher order statistics compared to linear weights, and hence it can learn more complicated features faster, especially in the early stage of a deep neural network.
