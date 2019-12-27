@@ -21,6 +21,7 @@ We combine the idea of kervolution with inception networks. We stack various ker
 ## Target
 We will target the below conference schedule depending on research progress.
 1) ECCV 2020 (Deadline 2020/03/05)
+2) BMVC 2020 (Deadline 2020/04/29 temp)
 2) NIPS 2020 (Deadline 2020/05/23 temp)
 3) ACCV 2020 (Deadline 2020/07/01 temp)
 3) ICLR 2021 (Deadline 2020/09/25 temp)
