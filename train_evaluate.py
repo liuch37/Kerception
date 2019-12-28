@@ -12,6 +12,7 @@ import click
 import pickle
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
+import pdb
 
 #args
 @click.command()
@@ -58,7 +59,7 @@ def main(datasetname,n_classes,batch_size,
     # dataset
     train_dataset, train_samples = datasets.get_dataset(datasetname, batch_size)
     test_dataset, _ = datasets.get_dataset(datasetname, batch_size, subset="test", shuffle=False)
-
+    
     #Network
     kernel_fn = get_kernel(kernel, cp=cp, dp=dp, gamma=gamma)
 
@@ -143,12 +144,13 @@ def main(datasetname,n_classes,batch_size,
                     for x_batch, y_batch in test_dataset:
                         if len(x_batch.shape)==3:
                             x_batch = tf.expand_dims(x_batch, 3)
-                            test_logits = model(x_batch, training=False)
-                            # Update test metrics
-                            test_acc_metric(y_batch, test_logits)
+                        test_logits = model(x_batch, training=False)
+                        # Update test metrics
+                        test_acc_metric(y_batch, test_logits)
 
                     test_acc = test_acc_metric.result()
                     test_accuracy_collector.append(float(test_acc))
+                    test_acc_metric.reset_states()
 
                     train_acc = train_acc_metric.result() 
                     print("Training loss {:1.2f}, accuracu {} at step {}".format(\

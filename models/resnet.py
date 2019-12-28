@@ -102,3 +102,5 @@ def ResNet18(num_classes=10):
 def ResNet34(num_classes=10):
     return ResNet([3,4,6,3], num_classes=num_classes)
 
+def ResNet101(num_classes=10):
+    return ResNet([3,4,23,3], num_classes=num_classes)

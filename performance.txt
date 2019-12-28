@@ -1,0 +1,29 @@
+1. CIFAR10: 50000 train + 10000 validation, batch=128, epoch=200
+a) Resnet-101:
+b) Resnet KNN - 101 (cp trainable, dp=3):
+c) Resnet KCNN - 101 (cp trainable):
+
+2. CIFAR100: 50000 train + 10000 validation, batch=128, epoch=200
+a) Resnet-101:
+b) Resnet KNN - 101 (cp trainable, dp=3):
+c) Resnet KCNN - 101 (cp trainable):
+
+3. CIFAR10:
+a) VGG16:
+b) VGG16 KNN 1 layer
+c) VGG16 - KCNN 1 layer
+e) VGG16 - KCNN on dynamic scheduling (ratio proportional)
+f) VGG16 - KCNN on dynamic scheduling (ratio proportional + layer decay)
+
+4. CIFAR100:
+a) VGG16:
+b) VGG16 KNN 1 layer
+c) VGG16 - KCNN 1 layer
+e) VGG16 - KCNN on dynamic scheduling (ratio proportional)
+
+5. ImageNet:
+a) VGG16:
+b) VGG16 KNN 1 layer
+c) VGG16 - KCNN 1 layer
+e) VGG16 - KCNN on dynamic scheduling (ratio proportional)
+f) VGG16 - KCNN on dynamic scheduling (ratio proportional + layer decay)

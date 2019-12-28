@@ -42,7 +42,7 @@ class LPNormKernel(tf.keras.layers.Layer):
         return out
 
 class PolynomialKernel(tf.keras.layers.Layer):
-    def __init__(self,cp=1.0, dp=3.0, trainable=False):
+    def __init__(self,cp=1.0, dp=3.0, trainable=True):
 
         super(PolynomialKernel, self).__init__(name="polynomialConv2D")
         self.dp = dp
@@ -244,6 +244,33 @@ class Kerception_blockB(tf.keras.layers.Layer):
         self.kconv4 = KernelConv2D(3, kernel_size=(3,3), kernel_fn=self.kernel_fn4)
         self.kernel_fn5 = get_kernel("polynomial_plus", cp=1.0, dp=5.0, trainable=True)
         self.kconv5 = KernelConv2D(3, kernel_size=(3,3), kernel_fn=self.kernel_fn5)
+
+    def call(self, x):
+        x1 = self.kconv1(x)
+        x2 = self.kconv2(x)
+        x3 = self.kconv3(x)
+        x4 = self.kconv4(x)
+        x5 = self.kconv5(x)
+
+        return tf.keras.layers.concatenate([x1, x2, x3, x4, x5], axis = 3)
+
+class Kerception_blockC(tf.keras.layers.Layer):
+    '''
+    Customized kervolution 2D + ratio proportional [0.1, 0.1, 0.2, 0.3, 0.3] inception block with total 16 filters.
+    '''
+    def __init__(self):
+
+        super(Kerception_blockB,self).__init__()
+        self.kernel_fn1 = get_kernel("linear")
+        self.kconv1 = KernelConv2D(1, kernel_size=(3,3), kernel_fn=self.kernel_fn1)
+        self.kernel_fn2 = get_kernel("sigmoid")
+        self.kconv2 = KernelConv2D(1, kernel_size=(3,3), kernel_fn=self.kernel_fn2)
+        self.kernel_fn3 = get_kernel("gaussian", gamma=1.0, trainable=True)
+        self.kconv3 = KernelConv2D(4, kernel_size=(3,3), kernel_fn=self.kernel_fn3)
+        self.kernel_fn4 = get_kernel("polynomial", cp=1.0, dp=3.0, trainable=True)
+        self.kconv4 = KernelConv2D(5, kernel_size=(3,3), kernel_fn=self.kernel_fn4)
+        self.kernel_fn5 = get_kernel("polynomial", cp=1.0, dp=5.0, trainable=True)
+        self.kconv5 = KernelConv2D(5, kernel_size=(3,3), kernel_fn=self.kernel_fn5)
 
     def call(self, x):
         x1 = self.kconv1(x)

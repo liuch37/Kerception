@@ -2,6 +2,7 @@ import numpy as np
 import os
 import multiprocessing
 import tensorflow as tf
+import pdb
 
 class DataSet(object):
     """
@@ -76,7 +77,7 @@ class Cifar10DataSet(DataSet):
         indexes = np.arange(len(train_data[0]))
 
         if subset == "train":
-            train_indexes = indexes[:45000]
+            train_indexes = indexes[:]
             train_images = train_data[0][train_indexes,:,:,:]
             train_labels = train_data[1][train_indexes,:]
             data = (train_images, train_labels)
@@ -91,6 +92,12 @@ class Cifar10DataSet(DataSet):
             data = test_data
 
         self.subset = subset
+        if self.subset == "train":
+            data = train_data
+            self.num_samples = len(train_data[0])
+        else:
+            data = test_data
+            self.num_samples = len(test_data[0])
 
         super(Cifar10DataSet, self).__init__(data,
                                              image_dims,
@@ -161,7 +168,7 @@ def get_dataset(datasetname, batch_size, subset="train", shuffle=True, repeat=1,
                                               repeat=repeat,
                                               use_distortion=use_distortion)
         dataset = cifardataset.make_batch(batch_size)
-        nrof_samples = train_data.num_samples
+        nrof_samples = cifardataset.num_samples
 
         return dataset, nrof_samples
                                                                               
