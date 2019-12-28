@@ -76,7 +76,7 @@ def main(datasetname,n_classes,batch_size,
     lr_schedule = tf.keras.optimizers.schedules.PiecewiseConstantDecay(\
                     boundries,
                     values)
-    optimizer = tf.keras.optimizers.SGD(learning_rate=lr_schedule, momentum=0.9)
+    optimizer = tf.keras.optimizers.SGD(learning_rate=lr_schedule, momentum=0.9, decay=weight_decay)
     loss_fn = tf.keras.losses.SparseCategoricalCrossentropy()
 
     #metrics
@@ -140,7 +140,8 @@ def main(datasetname,n_classes,batch_size,
                     print("Saved checkpoint for step {}: {}".format(int(ckpt.step),
                                                                     save_path))
                 # Log every 25 batch
-                if step % 25 == 0:
+                if step % 200 == 0:
+                    '''
                     for x_batch, y_batch in test_dataset:
                         if len(x_batch.shape)==3:
                             x_batch = tf.expand_dims(x_batch, 3)
@@ -151,13 +152,12 @@ def main(datasetname,n_classes,batch_size,
                     test_acc = test_acc_metric.result()
                     test_accuracy_collector.append(float(test_acc))
                     test_acc_metric.reset_states()
-
+                    '''
                     train_acc = train_acc_metric.result() 
                     print("Training loss {:1.2f}, accuracu {} at step {}".format(\
                             loss.numpy(),
                             float(train_acc),
                             step))
-
 
             # Display metrics at the end of each epoch.
             train_acc = train_acc_metric.result()
@@ -166,7 +166,6 @@ def main(datasetname,n_classes,batch_size,
             # Reset training metrics at the end of each epoch
             train_acc_metric.reset_states()
  
-
     ############################## Test the model #############################
         with test_summary_writer.as_default():
             for x_batch, y_batch in test_dataset:
@@ -179,6 +178,7 @@ def main(datasetname,n_classes,batch_size,
             test_acc = test_acc_metric.result()
             tf.summary.scalar("accuracy", test_acc, step=ep)
             test_acc_metric.reset_states()
+            test_accuracy_collector.append(float(test_acc))
             print('[Epoch {}] Test acc: {}'.format(ep, float(test_acc)))
     
     print("Best test accuracy is: {}".format(max(test_accuracy_collector)))

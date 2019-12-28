@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #====================MNIST Performance=====================#
+#Record stats every 20 steps
 filename0 = './performance/MNIST_convolution_statistics.txt'
 with open(filename0, 'rb') as fp:
     test_acc0 = pickle.load(fp)
@@ -57,10 +58,9 @@ plt.grid()
 plt.legend(['conv-conv','kerv-kerv: polynomial (dp=3, cp=1)','kerv-kerv: sigmoid','kerv-kerv: gaussian (g=1)','kerception A-conv (cp trainable)','kerv-conv: polynomial (dp=3, cp trainable)', 'kerv-kerv: polynomial (dp=3, cp trainable)','kerv-kerv: polynomial (dp=2, cp=1)','kerception B-conv (dp, cp trainable)'])
 plt.title('MNIST')
 
-'''
 #====================CIFAR10 Performance=====================#
 
-filename9 = './performance/CIFAR10_resnet101_statistics.txt'
+filename9 = './performance/CIFAR10_lenet_statistics.txt'
 with open(filename9, 'rb') as fp:
     test_acc9 = pickle.load(fp)
 
@@ -71,8 +71,7 @@ plt.plot(np.arange(len(test_acc9)),test_acc9,'-',\
 plt.ylabel('Validation Accuracy')
 plt.xlabel('Training Step')
 plt.grid()
-plt.legend(['resnet-101'])
+plt.legend(['LeNet5'])
 plt.title('CIFAR10')
-'''
 
 plt.show()
