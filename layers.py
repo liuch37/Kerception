@@ -42,7 +42,7 @@ class LPNormKernel(tf.keras.layers.Layer):
         return out
 
 class PolynomialKernel(tf.keras.layers.Layer):
-    def __init__(self,cp=1.0, dp=3.0, trainable=True):
+    def __init__(self,cp=1.0, dp=3.0, trainable=False):
 
         super(PolynomialKernel, self).__init__(name="polynomialConv2D")
         self.dp = dp

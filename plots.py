@@ -57,6 +57,7 @@ plt.grid()
 plt.legend(['conv-conv','kerv-kerv: polynomial (dp=3, cp=1)','kerv-kerv: sigmoid','kerv-kerv: gaussian (g=1)','kerception A-conv (cp trainable)','kerv-conv: polynomial (dp=3, cp trainable)', 'kerv-kerv: polynomial (dp=3, cp trainable)','kerv-kerv: polynomial (dp=2, cp=1)','kerception B-conv (dp, cp trainable)'])
 plt.title('MNIST')
 
+'''
 #====================CIFAR10 Performance=====================#
 
 filename9 = './performance/CIFAR10_resnet101_statistics.txt'
@@ -72,4 +73,6 @@ plt.xlabel('Training Step')
 plt.grid()
 plt.legend(['resnet-101'])
 plt.title('CIFAR10')
+'''
+
 plt.show()
