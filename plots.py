@@ -64,14 +64,18 @@ filename9 = './performance/CIFAR10_lenet_statistics.txt'
 with open(filename9, 'rb') as fp:
     test_acc9 = pickle.load(fp)
 
+filename10 = './performance/CIFAR10_lenetkcnn_statistics.txt'
+with open(filename10, 'rb') as fp:
+    test_acc10 = pickle.load(fp)
 
 plt.figure(2)
 plt.plot(np.arange(len(test_acc9)),test_acc9,'-',\
+         np.arange(len(test_acc10)),test_acc10,'-',\
          linewidth=2, markersize=8)
 plt.ylabel('Validation Accuracy')
 plt.xlabel('Training Step')
 plt.grid()
-plt.legend(['LeNet5'])
+plt.legend(['LeNet5','LeNet5 - kerception A'])
 plt.title('CIFAR10')
 
 plt.show()
