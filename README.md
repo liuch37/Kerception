@@ -13,6 +13,7 @@ We propose several techniques to overcome the above drawback.
 We combine the idea of kervolution with inception networks. We stack various kernels together and concatenate them into one kerception block - similar to the idea that inception network combines various convolutional kernel sizes and pooling layer.
 
 ### Fully Trainable Polynomial Kernel
+This does not work well - exponent is unlikely to be trained. 
 
 ### Dynamic Scheduling for Constructing a Kerception Block
 
