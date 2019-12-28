@@ -27,7 +27,7 @@ import pdb
 @click.option('--dp', default=3.0)
 @click.option('--gamma', default=1.0)
 @click.option("--batch_size", default=50)
-@click.option("--epochs", default=20)
+@click.option("--epochs", default=5)
 @click.option("--lr", default=0.003)
 @click.option("--keep_prob", default=1.0)
 @click.option("--weight_decay", default=0.0) 
@@ -139,8 +139,8 @@ def main(datasetname,n_classes,batch_size,
                     save_path = manager.save()
                     print("Saved checkpoint for step {}: {}".format(int(ckpt.step),
                                                                     save_path))
-                # Log every 50 batch
-                if step % 50 == 0:
+                # Log every 25 batch
+                if step % 25 == 0:
                     for x_batch, y_batch in test_dataset:
                         if len(x_batch.shape)==3:
                             x_batch = tf.expand_dims(x_batch, 3)
