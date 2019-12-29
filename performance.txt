@@ -1,3 +1,10 @@
+# Concept proving for intuitive kerception block
+0. MNIST: 50000 train + 10000 validation, batch=50, epoch=5
+a) Lenet5
+b) Lenet5 KNN
+c) Lenet5 KCNN
+
+# Performance validation for proposed kerception block with dynamic scheduling
 1. CIFAR10: 50000 train + 10000 validation, batch=128, epoch=200
 a) Resnet-101:
 b) Resnet KNN - 101 (cp trainable, dp=3):
@@ -9,6 +16,14 @@ b) Resnet KNN - 101 (cp trainable, dp=3):
 c) Resnet KCNN - 101 (cp trainable):
 
 3. CIFAR10:
+i) Alexnet:
+a) Alexnet:
+b) Alexnet KNN 1 layer
+c) Alexnet - KCNN 1 layer
+e) Alexnet - KCNN on dynamic scheduling (ratio proportional)
+f) Alexnet - KCNN on dynamic scheduling (ratio proportional + layer decay)
+
+ii) VGG16:
 a) VGG16:
 b) VGG16 KNN 1 layer
 c) VGG16 - KCNN 1 layer
@@ -16,12 +31,29 @@ e) VGG16 - KCNN on dynamic scheduling (ratio proportional)
 f) VGG16 - KCNN on dynamic scheduling (ratio proportional + layer decay)
 
 4. CIFAR100:
+i) Alexnet:
+a) Alexnet:
+b) Alexnet KNN 1 layer
+c) Alexnet - KCNN 1 layer
+e) Alexnet - KCNN on dynamic scheduling (ratio proportional)
+f) Alexnet - KCNN on dynamic scheduling (ratio proportional + layer decay)
+
+ii) VGG16:
 a) VGG16:
 b) VGG16 KNN 1 layer
 c) VGG16 - KCNN 1 layer
 e) VGG16 - KCNN on dynamic scheduling (ratio proportional)
+f) VGG16 - KCNN on dynamic scheduling (ratio proportional + layer decay)
 
 5. ImageNet:
+i) Alexnet:
+a) Alexnet:
+b) Alexnet KNN 1 layer
+c) Alexnet - KCNN 1 layer
+e) Alexnet - KCNN on dynamic scheduling (ratio proportional)
+f) Alexnet - KCNN on dynamic scheduling (ratio proportional + layer decay)
+
+ii) VGG16:
 a) VGG16:
 b) VGG16 KNN 1 layer
 c) VGG16 - KCNN 1 layer
