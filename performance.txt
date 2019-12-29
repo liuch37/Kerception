@@ -6,7 +6,7 @@ c) Lenet5 KCNN
 
 # Performance validation for proposed kerception block with dynamic scheduling
 1. CIFAR10: 50000 train + 10000 validation, batch=128, epoch=200
-a) Resnet-101:
+a) Resnet-101 (basic block + no augmentation): 0.8450
 b) Resnet KNN - 101 (cp trainable, dp=3):
 c) Resnet KCNN - 101 (cp trainable):
 
