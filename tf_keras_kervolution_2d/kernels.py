@@ -83,16 +83,37 @@ class PolynomialKernel(Layer):
 
 class GaussianKernel(Layer):
 
-    def __init__(self, gamma, **kwargs):
+    def __init__(self, gamma=1.0, trainable_gamma=False, initializer='zeros',
+                 regularizer=None,
+                 constraint=None, **kwargs):
         super(GaussianKernel, self).__init__(**kwargs)
         self.gamma = gamma
+        self.trainable_gamma = trainable_gamma
+        self.initializer = initializers.get(initializer)
+        self.regularizer = regularizers.get(regularizer)
+        self.constraint = constraints.get(constraint)
+
+    def build(self, input_shape):
+        if self.trainable_gamma:
+            self.gamma = self.add_weight(
+                shape=(),
+                initializer=self.initializer,
+                regularizer=self.regularizer,
+                constraint=self.constraint,
+                name='{}_gamma'.format(self.name),
+            )
+        super(GaussianKernel, self).build(input_shape)
 
     def call(self, inputs, **kwargs):
         x, kernel = K.expand_dims(inputs[0], axis=-1), inputs[1]
         return K.exp(-self.gamma * K.sum(K.square(x - kernel), axis=-2))
 
     def get_config(self):
-        config = {'gamma': self.gamma}
+        config = {'gamma': self.gamma,
+                  'trainable_gamma': self.trainable_gamma,
+                  'initializer': initializers.serialize(self.initializer),
+                  'regularizer': regularizers.serialize(self.regularizer)
+                 }
         base_config = super(GaussianKernel, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
 
