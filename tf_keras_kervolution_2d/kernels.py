@@ -1,6 +1,7 @@
 from tensorflow.python.keras.layers import Layer
 from tensorflow.python.keras import initializers, regularizers, constraints
 from tensorflow.python.keras import backend as K
+import tensorflow as tf
 
 
 __all__ = ['LinearKernel', 'L1Kernel', 'L2Kernel', 'PolynomialKernel', 'GaussianKernel']
@@ -94,3 +95,15 @@ class GaussianKernel(Layer):
         config = {'gamma': self.gamma}
         base_config = super(GaussianKernel, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
+
+class SigmoidKernel(Layer):
+
+    def __init__(self, **kwargs):
+        super(SigmoidKernel, self).__init__(**kwargs)
+        self.linear = LinearKernel()
+
+    def call(self, inputs, **kwargs):
+        x, w = inputs
+        out = self.linear((x,w,None))
+        out = tf.math.tanh(out)
+        return out
