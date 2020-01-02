@@ -27,7 +27,9 @@ This does not work well - exponent is unlikely to be trained.
 We will target the below conference schedule depending on research progress.
 1) ECCV 2020 (Deadline 2020/03/05)
 2) BMVC 2020 (Deadline 2020/04/29 temp)
-2) NIPS 2020 (Deadline 2020/05/23 temp)
-3) ACCV 2020 (Deadline 2020/07/01 temp)
-3) ICLR 2021 (Deadline 2020/09/25 temp)
-4) CVPR 2021 (Deadline 2020/11/01 temp)
+3) NIPS 2020 (Deadline 2020/05/23 temp)
+4) ACCV 2020 (Deadline 2020/07/01 temp)
+5) WACV 2021 (Deadline 2020/07/26 temp)
+6) ICLR 2021 (Deadline 2020/09/25 temp)
+7) WACV 2021 (Deadline 2020/10/11 temp)
+8) CVPR 2021 (Deadline 2020/11/01 temp)
