@@ -12,6 +12,7 @@ __all__ = ['Kerception_blockC']
 class Kerception_blockC(tf.keras.layers.Layer):
     '''
     Customized kervolution 2D + ratio proportional [0.1, 0.1, 0.2, 0.3, 0.3] inception block with total 16 filters.
+    Scheduling algorithm: allocation = floor(total_filters*ratio) -> remainder = total_filters - sum(allocation) -> Do allocation[-index]++ and remainder-- and index++ while remainder >= 0.
     '''
     def __init__(self):
 
