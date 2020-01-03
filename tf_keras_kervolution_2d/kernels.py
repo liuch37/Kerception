@@ -4,7 +4,7 @@ from tensorflow.python.keras import backend as K
 import tensorflow as tf
 
 
-__all__ = ['LinearKernel', 'L1Kernel', 'L2Kernel', 'PolynomialKernel', 'GaussianKernel','SigmoidKernels']
+__all__ = ['LinearKernel', 'L1Kernel', 'L2Kernel', 'PolynomialKernel', 'GaussianKernel','SigmoidKernel']
 
 
 class LinearKernel(Layer):
