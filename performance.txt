@@ -12,7 +12,15 @@ c) Resnet KCNN - 101 (cp trainable): 0.8382 (without regularization), 0.8562 (ad
 
 1.1 Combination test:
 (1,4,4,5,2)
-c) Resnet KCNN - 101 (cp trainable): (advanced block + no augmentation)
+c) Resnet KCNN - 101 (cp trainable):  0.8471 (advanced block + no augmentation)
+
+1.2 Combination test:
+(3,3,4,5,1)
+c) Resnet KCNN - 101 (cp trainable): 0.8005 (advanced block + no augmentation) -> fail to converge
+
+1.3 Combination test:
+(1,3,3,6,3)
+c) Resnet KCNN - 101 (cp trainable): 0.8562 (advanced block + no augmentation)
 
 2. CIFAR100: 50000 train + 10000 validation, batch=128, epoch=200
 basic setting: (1,1,4,5,5)
@@ -22,7 +30,11 @@ c) Resnet KCNN - 101 (cp trainable): 0.5392 (without regularization), 0.5813 (ad
 
 2.1 Combination test:
 (1,4,4,5,2)
-c) Resnet KCNN - 101 (cp trainable): (advanced block + no augmentation)
+c) Resnet KCNN - 101 (cp trainable): 0.5861 (advanced block + no augmentation)
+
+2.3 Combination test:
+(1,3,3,6,3)
+c) Resnet KCNN - 101 (cp trainable): 0.5755 (advanced block + no augmentation)
 
 # Performance validation for proposed kerception block with dynamic scheduling
 3. CIFAR10:
