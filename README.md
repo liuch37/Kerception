@@ -1,5 +1,5 @@
 # Kerception Neural Networks
-This is the prototype for the proposed Kerception neural network and its dynamic scheduling algorithms, tested with different DNN models/datasets using Tensorflow 2.0. Our implementation is on top of and modify the below repositories: 
+This is the prototype for the proposed Kerception neural network, tested with different DNN models/datasets using Tensorflow 2.0. Our implementation is on top of and modify the below repositories: 
 
 https://github.com/amalF/Kervolution
 
