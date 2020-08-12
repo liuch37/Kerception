@@ -20,4 +20,4 @@ We combine the idea of kervolution with inception networks. We stack various ker
 This does not work well - exponent is unlikely to be trained well. 
 
 ### Dynamic Scheduling for Constructing a Kerception Block
-How to combine different kerception blocks still need more studies and ideas. To be dicovered.
+How to combine different kerception blocks still need more studies and ideas. To be discovered.
