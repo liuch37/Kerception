@@ -11,14 +11,13 @@ Our idea is based on the CVPR 2019 paper "Kervolutional Neural Networks" https:/
 ## Idea
 The paper discussed several classical kernels. However, it does not generalize how to set the hyperparameters for each kernel. It is almost impossible to tune every hyperparameter in one kernel, and needless to say it is impossible to select proper kernel manually when we would like to design a deep neural network architecture.
 
-We propose several techniques to overcome the above drawback. 
+We propose the idea of "kerception" by combining "kervolution" and "inception". 
 
 ### Kerception Block
 We combine the idea of kervolution with inception networks. We stack various kernels together and concatenate them into one kerception block - similar to the idea that inception network combines various convolutional kernel sizes and pooling layer.
 
-### Fully Trainable Polynomial Kernel
-This does not work well - exponent is unlikely to be trained. 
+#### Fully Trainable Polynomial Kernel
+This does not work well - exponent is unlikely to be trained well. 
 
 ### Dynamic Scheduling for Constructing a Kerception Block
-
-### More to come......
+How to combine different kerception blocks still need more studies and ideas. To be dicovered.
